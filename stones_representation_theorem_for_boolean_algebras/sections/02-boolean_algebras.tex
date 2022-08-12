@@ -1,0 +1,644 @@
+\section{Boolean algebras}
+\label{sec:boolean_algebras}
+
+Next we investigate Boolean algebras
+in terms of algebraic structures.
+The resulting correspondence between Boolean algebras and Boolean rings
+is motivated by Exercise~2 in the book
+\textquote{Introduction to Boolean Algebras}
+\cite[p.~18]{halmos:boolean_algebras}.
+Afterwards we give some examples for Boolean algebras
+and close this section by examining ultrafilters on Boolean algebras,
+which are the main object of interest
+in Section \ref{sec:representation_theorems}.
+
+\medskip
+
+In contrast to the approach in Section \ref{sec:lattices} it is more common
+to directly formulate the axioms for Boolean algebras in the language
+$\symcal{L} \equal \lbrace \vee \mathcomma \wedge \mathcomma
+\, \prime \mathcomma 0 \mathcomma 1 \rbrace$.
+This is convenient in that it also defines homomorphisms and substructures,
+which are again Boolean algebras.
+Usually, one takes the axioms listed below or their universal closures.
+
+\begin{table}[h]
+\centering
+  \begin{tabular}{rccl}
+    \textcolor{gray}{\texttt{1.}}
+    &
+    $\lparen a \vee b \rparen \vee c
+    \equal a \vee \lparen b \vee c \rparen$
+    &
+    $\lparen a \wedge b \rparen \wedge c
+    \equal a \wedge \lparen b \wedge c \rparen$
+    &
+    \phantom{\texttt{1.}}
+    \\
+    \textcolor{gray}{\texttt{2.}}
+    &
+    $a \vee b \equal b \vee a$
+    &
+    $a \wedge b \equal b \wedge a$
+    &
+    \phantom{\texttt{2.}}
+    \\
+    \textcolor{gray}{\texttt{3.}}
+    &
+    $a \vee \lparen a \wedge b \rparen \equal a$
+    &
+    $a \wedge \lparen a \vee b \rparen \equal a$
+    &
+    \phantom{\texttt{3.}}
+    \\
+    \textcolor{gray}{\texttt{4.}}
+    &
+    $a \vee a \equal a$
+    &
+    $a \wedge a \equal a$
+    &
+    \phantom{\texttt{4.}}
+    \\
+    \textcolor{gray}{\texttt{5.}}
+    &
+    $a \vee 0 \equal a$
+    &
+    $a \wedge 1 \equal a$
+    &
+    \phantom{\texttt{5.}}
+    \\
+    \textcolor{gray}{\texttt{6.}}
+    &
+    $a \vee 1 \equal 1$
+    &
+    $a \wedge 0 \equal 0$
+    &
+    \phantom{\texttt{6.}}
+    \\
+    \textcolor{gray}{\texttt{7.}}
+    &
+    $a \vee \lparen b \wedge c \rparen
+      \equal
+      \lparen a \vee b \rparen \wedge \lparen a \vee c \rparen$
+    &
+    $a \wedge \lparen b \vee c \rparen
+      \equal
+      \lparen a \wedge b \rparen \vee \lparen a \wedge c \rparen$
+    &
+    \phantom{\texttt{7.}}
+    \\
+    \textcolor{gray}{\texttt{8.}}
+    &
+    $a \vee a \prime \equal 1$
+    &
+    $a \wedge a \prime \equal 0$
+    &
+    \phantom{\texttt{8.}}
+    \\
+    \textcolor{gray}{\texttt{9.}}
+    &
+    $1 \prime \equal 0$
+    &
+    $0 \prime \equal 1$
+    &
+    \phantom{\texttt{9.}}
+    \\
+    \textcolor{gray}{\texttt{10.}}
+    &
+    \multicolumn{2}{c}{$a \equal \lparen a \prime \rparen \prime$}
+    &
+    \phantom{\texttt{10.}}
+    \\
+    \textcolor{gray}{\texttt{11.}}
+    &
+    $\lparen a \vee b \rparen \prime \equal a \prime \wedge b \prime$
+    &
+    $\lparen a \wedge b \rparen \prime \equal a \prime \vee b \prime$
+    &
+    \phantom{\texttt{11.}}
+    \\
+  \end{tabular}
+\end{table}
+
+It is easy to see how this list of axioms connects
+to the lattice-based point of view.
+For example, Lines 1 to 3 are the definition of lattices
+and Lines 5 and 6 are the definition of complements in bounded lattices.
+However, this list of axioms is not minimal;
+for instance we showed that Lines 4 and 10
+are rather consequences of the other axioms.
+
+Huntington proved \cite{huntingtion:axiomset_boolean}
+that the commutative laws (Line 2), the identity laws (Line~5),
+the distributive laws (Line 7), and the complement laws (Line 8)
+form a minimal axiom set for Boolean algebras.
+
+\medskip
+
+We now develop another point of view for Boolean algebras
+based on classical algebra.
+For this purpose we introduce \emph{Boolean rings}
+and show how every Boolean algebra
+gives rise to such a ring.
+
+\medskip
+
+\begin{definition}
+  A unitary ring $R$ is called a \emph{Boolean ring}
+  if all of its elements are idempotent
+  (that is $a^2 \equal a$ for all $a \in R$).
+\end{definition}
+
+\begin{proposition}
+\label{prop:boolean_ring}
+  A Boolean ring is commutative and of characteristic 2.
+\end{proposition}
+
+\begin{proof}
+  Let $R$ be a Boolean ring and $a \mathcomma b \in R$.
+  Then
+  \[
+    a \mathplus b
+    \equal
+    \lparen a \mathplus b \rparen ^2
+    \equal
+    a ^2 \mathplus ab \mathplus ba \mathplus b ^2
+    \equal
+    a \mathplus ab \mathplus ba \mathplus b,
+  \]
+  so $ab \mathplus ba \equal 0$.
+  Consequently the choice $a \equal b$ leads to
+  \[
+    0
+    \equal
+    a ^2 \mathplus a ^2
+    \equal
+    a \mathplus a,
+  \]
+  hence $R$ has characteristic 2.
+  In particular both $ab$ and $ba$ are negatives of $ab$
+  and we obtain $ab \equal ba$.
+\end{proof}
+
+\begin{theorem}
+\label{thm:algebra_ring}
+  Let
+  $\lparen B \mathcomma \vee \mathcomma \wedge \mathcomma \, \prime
+  \mathcomma 0 \mathcomma 1 \rparen$
+  be a Boolean algebra.
+  Then
+  $\lparen B \mathcomma \mathplus \mathcomma \minus \mathcomma \cdotp
+  \mathcomma 0 \mathcomma 1 \rparen$
+  is a Boolean ring,
+  where
+  \begin{align*}
+    a \mathplus b
+    &\coloneq
+    \lparen a \wedge b \prime \rparen \vee \lparen a \prime \wedge b \rparen\\
+    \minus a
+    &\coloneq
+    a\\
+    a \cdotp b
+    &\coloneq
+    a \wedge b
+  \end{align*}
+  for $a \mathcomma b \in B$.
+\end{theorem}
+
+\begin{proof}
+  Once the above operations are established
+  it is merely a matter of routine to check that these make $B$ a Boolean ring.
+  For example the commutativity of the join and the meet leads to
+  \[
+    a \mathplus b
+    \equal
+    \lparen a \wedge b \prime \rparen \vee \lparen a \prime \wedge b \rparen
+    \equal
+    \lparen b \wedge a \prime \rparen \vee \lparen b \prime \wedge a \rparen
+    \equal
+    b \mathplus a
+  \]
+  for all $a \mathcomma b \in B$,
+  whence the arising addition is also commutative.
+\end{proof}
+
+\medskip
+
+In Section \ref{sec:lattices} we have seen the close relationship
+between lattices
+and ordered sets in which infima and suprema exist for all finite subsets.
+The next result reveals a similar connection
+between Boolean rings and Boolean algebras.
+It is easy to see that the constructions
+from Theorems \ref{thm:algebra_ring} and \ref{thm:ring_algebra}
+are the counterpart of each other,
+such that we have a one-to-one correspondence between both structures.
+
+\medskip
+
+\begin{theorem}
+\label{thm:ring_algebra}
+  Let
+  $\lparen R \mathcomma \mathplus \mathcomma \minus \mathcomma \cdotp
+  \mathcomma 0 \mathcomma 1 \rparen$
+  be a Boolean ring.
+  Then
+  $\lparen R \mathcomma \vee \mathcomma \wedge \mathcomma \, \prime
+  \mathcomma 0 \mathcomma 1 \rparen$
+  is a Boolean algebra,
+  where
+  \begin{align*}
+    a \vee b
+    &\coloneq
+    a \mathplus b \mathplus ab \\
+    a \wedge b
+    &\coloneq
+    ab \\
+    a \prime
+    &\coloneq
+    a \mathplus 1
+  \end{align*}
+  for $a \mathcomma b \in R$.
+\end{theorem}
+
+\begin{proof}
+  Similarly to the proof of Theorem \ref{thm:algebra_ring},
+  the verification of the lattice axioms is just an arithmetical issue.
+  For instance, with Proposition \ref{prop:boolean_ring} one directly obtains
+  \[
+    a \vee \lparen a \wedge b \rparen
+    \equal
+    a \mathplus ab \mathplus a^2 b
+    \equal
+    a \mathplus ab \mathplus ab
+    \equal
+    a
+  \]
+  as well as
+  \[
+    a \wedge \lparen a \vee b \rparen
+    \equal
+    a \lparen a \mathplus b \mathplus ab \rparen
+    \equal
+    a^2 \mathplus ab \mathplus a^2b
+    \equal
+    a \mathplus ab \mathplus ab
+    \equal
+    a
+  \]
+  for all $a \mathcomma b \in R$,
+  so that $\vee$ and $\wedge$ fulfill the absorption laws.
+\end{proof}
+
+\medskip
+
+Next, we see some examples for Boolean algebras.
+
+\medskip
+
+\begin{example}
+\label{ex:2}
+  The set
+  $\lbrace 0 \mathcomma 1 \rbrace$
+  gives rise to the smallest non-degenerate Boolean algebra.
+  A suitable choice of the lattice operations
+  as well as the corresponding ring operations are stated in the tables below.
+
+  \begin{table}[h]
+  \centering
+    \captionbox*{The lattice operations.}{%
+      \begin{tabular}{c|cc}
+        $\vee$ & $0$ & $1$ \\ \hline
+        $0$    & $0$ & $1$ \\
+        $1$    & $1$ & $1$
+      \end{tabular}
+      \quad
+      \begin{tabular}{c|cc}
+        $\wedge$ & $0$ & $1$ \\ \hline
+        $0$      & $0$ & $0$ \\
+        $1$      & $0$ & $1$
+      \end{tabular}
+    }
+    \quad
+    \quad
+    \quad
+    \captionbox*{The ring operations.}{%
+      \begin{tabular}{c|cc}
+        $\mathplus$ & $0$ & $1$ \\ \hline
+        $0$         & $0$ & $1$ \\
+        $1$         & $1$ & $0$
+      \end{tabular}
+      \quad
+      \begin{tabular}{c|cc}
+        $\cdotp$ & $0$ & $1$ \\ \hline
+        $0$      & $0$ & $0$ \\
+        $1$      & $0$ & $1$
+      \end{tabular}
+    }
+  \end{table}
+\end{example}
+
+\begin{example}
+\label{ex:powerset}
+  Any set $X$ gives rise to a Boolean algebra
+  $\left \lparen \Po{X} \mathcomma \cup \mathcomma \cap \mathcomma
+  \, ^ \complement \mathcomma \varnothing \mathcomma X \right \rparen$.
+  The addition in the corresponding Boolean ring is given by
+  \[
+    A \bigtriangleup B
+    \equal
+    \lparen A \setminus B \rparen \cup \lparen B \setminus A \rparen
+  \]
+  for $A \mathcomma B \subseteq X$
+  and often called \emph{symmetric difference}.
+
+  If $X \equal \varnothing$
+  the above construction leads to the degenerate Boolean algebra,
+  and if $X$ consists of exactly one element,
+  the resulting Boolean algebra is isomorphic to Example~\ref{ex:2}.
+\end{example}
+
+\begin{example}
+\label{ex:clopen}
+  Let
+  $\lparen X \mathcomma \symcal{O} \rparen$
+  be a topological space.
+  The subsets of $X$ that are both open and closed form a Boolean algebra.
+\end{example}
+
+\begin{example}
+\label{ex:countable}
+  The set of finite and cofinite subsets of $\N_0$ is a Boolean algebra.
+\end{example}
+
+\begin{remark}
+  Let $\symcal{F}$ be the set of finite subsets of $\N_0$ and consider the map
+  \[
+    f \mathcolon \symcal{F} \rightarrow \N_0 \mathcomma \
+    F \mapsto \sum_{n \in F} 2^n.
+  \]
+  Applying appropriate number theoretic methods,
+  it is shown that f is a bijection.
+  More precisely, one uses the same techniques as for deriving
+  the unique representation of a natural number $n$
+  in the base-$2$ numeral system,
+  and $f^{\minus 1} \lparen n \rparen$ indicates the positions
+  where the digit 1 is located in the binary representation of $n$.
+  The German-speaking reader can read about this in more detail
+  in Chapter 4 of the book
+  \textquote{Elementare Zahlentheorie} by Remmert and Ullrich
+  \cite{remmert:zahlentheorie-3}.
+
+  Notably this result shows that $\symcal{F}$ is countable,
+  and by taking complements we also see that
+  the set of cofinite subsets of $\N_0$ is.
+  In particular, Example \ref{ex:countable} is a countable Boolean algebra.
+\end{remark}
+
+\medskip
+
+The final plan for this section is to work out
+the definition and properties of ultrafilters on Boolean algebras.
+The most general notion of filters is found in order theory
+as shown in Section \ref{sec:orders}.
+On Boolean algebras, a more concrete but equivalent definition
+can be given using the meet.
+
+\medskip
+
+\begin{lemma}
+\label{la:order_complement}
+  Let
+  $\lparen B \mathcomma \vee \mathcomma \wedge \mathcomma \, \prime
+  \mathcomma 0 \mathcomma 1 \rparen$
+  be a Boolean algebra.
+  Then
+  \[
+    b \wedge c \equal 0
+    \Leftrightarrow
+    b \leq c \prime
+  \]
+  for all $b \mathcomma c \in B$.
+\end{lemma}
+
+\begin{proof}
+  Let $b \mathcomma c \in B$.
+
+  \fbox{$\Rightarrow$}
+  It is
+  \[
+    b \wedge c \prime
+    \equal
+    \lparen b \wedge c \prime \rparen \vee 0
+    \equal
+    \lparen b \wedge c \prime \rparen \vee \lparen b \wedge c \rparen
+    \equal
+    b \wedge \lparen c \wedge c \prime \rparen
+    \equal
+    b \wedge 1
+    \equal
+    b,
+  \]
+  hence $b \leq c \prime$.
+
+  \fbox{$\Leftarrow$}
+  By definition of the order the assumption means
+  $b \wedge c \prime \equal b$,
+  so that
+  \[
+    b \wedge c
+    \equal
+    \lparen b \wedge c \prime \rparen \wedge c
+    \equal
+    b \wedge \lparen c \prime \wedge c \rparen
+    \equal
+    b \wedge 0
+    \equal
+    0.
+  \]
+\end{proof}
+
+\begin{definition}
+  Let
+  $\lparen B \mathcomma \vee \mathcomma \wedge \mathcomma \, \prime
+  \mathcomma 0 \mathcomma 1 \rparen$
+  be a Boolean algebra.
+  A subset $F \subseteq B$ is called a \emph{filter} on the Boolean algebra,
+  if
+  \begin{enumerate}
+    \item $F \neq \varnothing$,
+    \item $f \leq b$ implies $b \in F$ for all $f \in F$ and $b \in B$,
+    \item $f \wedge g \in F$ for all $f \mathcomma g \in F$.
+  \end{enumerate}
+  A filter is called \emph{proper} if $F \ne B$.
+\end{definition}
+
+\begin{remark}
+  A filter $F$ on a Boolean algebra is proper if and only if $0 \notin F$.
+\end{remark}
+
+\pagebreak
+
+\begin{definition}
+  The set of proper filters on $B$ is partially ordered by set inclusion.
+  A maximal element in this set is called an \emph{ultrafilter}.
+\end{definition}
+
+\medskip
+
+Although the definition of ultrafilters on general ordered sets
+and on those arising from a Boolean algebra is the same,
+ultrafilters on Boolean algebras have a very convenient characterization.
+It is also practical that certain sets can always be extended to ultrafilters,
+resulting in the fact
+that on every non-degenerate Boolean algebra there exists
+at least one ultrafilter.
+
+\begin{proposition}
+\label{prop:ultrafilter}
+  Let
+  $\lparen B \mathcomma \vee \mathcomma \wedge \mathcomma \, \prime
+  \mathcomma 0 \mathcomma 1 \rparen$
+  be a Boolean algebra and $U$ be a filter.
+  The following are equivalent:
+  \begin{enumroman}
+    \item $U$ is an ultrafilter.
+    \item For any $b \in B$ either $b \in U$ or $b \prime \in U$.
+  \end{enumroman}
+\end{proposition}
+
+\begin{proof}
+  \fbox{$\Rightarrow$}
+  Let $U$ be an ultrafilter and $b \in B$.
+  It is clear that not both $b$ and $b \prime$ are contained in $U$,
+  for otherwise also $0 \equal b \wedge b \prime \in U$,
+  contradicting that $U$ is a proper filter.
+  Without loss of generality we may assume $b \prime \notin U$
+  and show that in this case $b \in U$.
+  To this end, consider
+  \[
+    V
+    \coloneq
+    \lbrace
+    c \in B \pipe \exists u \in U \text{ with } u \wedge b \leq c
+    \rbrace.
+  \]
+
+  From $U \ne \varnothing$ one obtains $V \ne \varnothing$,
+  and since $\leq$ is transitive $V$ is closed upwards.
+  For~$v_1 \mathcomma v_2 \in V$ there are $u_1 \mathcomma u_2 \in U$
+  with $u_1 \wedge b \leq v_1$ and $u_2 \wedge b \leq v_2$.
+  We see that
+  \[
+    \underbrace{ \lparen u_1 \wedge u_2 \rparen }_{ \in U } \wedge \: b
+    \equal
+    \lparen u_1 \wedge b \rparen \wedge \lparen u_2 \wedge b \rparen
+    \leq
+    v_1 \wedge v_2,
+  \]
+  so $v_1 \wedge v_2 \in V$.
+
+  Note that $u \wedge b \ne 0$ for all $u \in U$,
+  since by Lemma \ref{la:order_complement}
+  \[
+    u \wedge b \equal 0
+    \Rightarrow
+    u \leq b \prime
+    \Rightarrow
+    b \prime \in U.
+  \]
+  Consequently $0 \notin V$,
+  so overall $V$ is a proper filter.
+
+  Finally we clearly have that $b \in V$ and $U \subseteq V$.
+  Since $U$ is a maximal proper filter,
+  the above observation leads to $U \equal V$,
+  hence $b \in U$.
+
+  \fbox{$\Leftarrow$}
+  Let $U$ be a filter fulfilling (ii).
+  Clearly $U$ is a proper filter and it is left to show maximality.
+  To this end, consider a proper filter $V$ with $U \subseteq V$
+  and assume there exists some $b \in V \setminus U$.
+  Then $b \prime \in U$ by assumption (ii),
+  and so also $b \prime \in V$.
+  Since $b \mathcomma b \prime \in V$
+  we have $0 \equal b \wedge b \prime \in V$,
+  contradicting that $V$ is a proper filter.
+  Thus, $V \equal U$ and $U$ is maximal in the set of proper filters.
+\end{proof}
+
+\begin{proposition}
+\label{prop:intersectionstable}
+  Let
+  $\lparen B \mathcomma \vee \mathcomma \wedge \mathcomma \, \prime
+  \mathcomma 0 \mathcomma 1 \rparen$
+  be a Boolean algebra and $D \subset B$ such that
+  \begin{itemize}
+    \item $0 \notin D$,
+    \item $d \wedge e \in D$ for all $d \mathcomma e \in D$.
+  \end{itemize}
+  Then there exists an ultrafilter $U$ with $D \subseteq U$.
+\end{proposition}
+
+\begin{proof}
+  Similarly to the proof of Proposition \ref{prop:ultrafilter} we see that
+  \[
+    F \coloneq
+    \lbrace
+    b \in B
+    \pipe
+    \exists d \in D \text{ with } d \leq b
+    \rbrace
+  \]
+  is a proper filter with $D \subseteq F$.
+  Thus, the set
+  \[
+    \mupGamma
+    \coloneq
+    \lbrace G \subset B
+    \pipe
+    G \text{ is a proper filter with } D \subseteq G
+    \rbrace
+  \]
+  is nonempty.
+  Clearly for any chain $\symcal{C} \subseteq \mupGamma$
+  the set $\bigcup \symcal{C}$
+  is an upper bound for $\symcal{C}$ in $\mupGamma$.
+  So by Zorn's lemma (cf.\ Theorem \ref{thm:zorn}),
+  there is a maximal element $U$ in $\mupGamma$.
+  This $U$ is an ultrafilter,
+  for if $V$ is any proper filter with $U \subseteq V$,
+  then $D \subseteq V$ and so $V \in \mupGamma$.
+\end{proof}
+
+\begin{corollary}
+  Let
+  $\lparen B \mathcomma \vee \mathcomma \wedge \mathcomma \, \prime
+  \mathcomma 0 \mathcomma 1 \rparen$
+  be a Boolean algebra and $D \subset B$.
+  If
+  $
+    \bigwedge_{ d \in D_0 } d \ne 0
+  $
+  for any finite subset $D_0 \subseteq D$,
+  then there exists an ultrafilter $U$ with $D \subseteq U$.
+\end{corollary}
+
+\begin{proof}
+  Apply Proposition \ref{prop:intersectionstable} to the set
+  $
+    D \cup
+    \lbrace
+    \bigwedge_{ d \in D_0 } d
+    \pipe
+    D_0 \subseteq D \text{ finite}
+    \rbrace
+  $.
+\end{proof}
+
+\begin{remark}
+  The application of the preceding corollary
+  to the set $\lbrace 1 \rbrace$ shows
+  that every non-degenerate Boolean algebra has at least one ultrafilter.
+\end{remark}

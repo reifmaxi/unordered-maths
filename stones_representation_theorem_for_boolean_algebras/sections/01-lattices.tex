@@ -1,0 +1,566 @@
+\section{Lattices}
+\label{sec:lattices}
+
+In this section we develop the notion of \emph{Boolean algebras}
+from the point of view of the theory of lattices.
+To this end, we follow the first two chapters of the book
+\textquote{Einführung in die Verbandstheorie} \cite{hermes:verbandstheorie-2}
+and introduce successively bounded, distributive and complementary lattices,
+to finally define Boolean algebras as lattices with all these properties.
+In addition, we will see how each lattice gives rise to an order,
+which lays the foundation for the representation theorems in
+Section \ref{sec:representation_theorems}.
+
+\medskip
+
+\begin{definition}
+\label{def:lattice}
+  A \emph{lattice} is a tuple
+  $\lparen L \mathcomma \vee \mathcomma \wedge \rparen$
+  consisting of a set $L$ and two binary operations $\vee$ and $\wedge$ on $L$
+  such that
+
+  \begin{table}[h]
+  \centering
+    \begin{tabular}{rlcrl}
+    Ass$_\vee$
+    & $\lparen a \vee b \rparen \vee c \equal a \vee \lparen b \vee c \rparen$
+    & \quad
+    & Ass$_\wedge$
+    & $\lparen a \wedge b \rparen \wedge c
+      \equal a \wedge \lparen b \wedge c \rparen$ \\
+    Com$_\vee$
+    & $a \vee b \equal b \vee a$
+    & \quad
+    & Com$_\wedge$
+    & $a \wedge b \equal b \wedge a$ \\
+    Abs$_\vee$
+    & $a \vee \lparen a \wedge b \rparen \equal a$
+    & \quad
+    & Abs$_\wedge$
+    & $a \wedge \lparen a \vee b \rparen \equal a$ \\
+    \end{tabular}
+  \end{table}
+
+  \noindent for all $a \mathcomma b \mathcomma c \in L$.
+  The operation $\vee$ is called \emph{join} and $\wedge$ is called \emph{meet};
+  the last two axioms are referred to as \emph{absorption laws}.
+\end{definition}
+
+\medskip
+
+From the definition it is easy to see that the two lattice operations
+are indistinguishable from the point of view of logic.
+This observation invites to give proofs by means of a \emph{duality principle}
+as follows:
+We call a statement \emph{lattice-theoretic}
+if besides the usual logical symbols only join and meet occur.
+For a lattice-theoretic statement
+one obtains the corresponding \emph{dual} statement
+be exchanging join and meet.
+Once a lattice-theoretic statement is proved,
+one has thereby also proved its dual statement.
+In fact, one obtains a proof for the latter
+by exchanging join and meet in the original proof.
+The justification for each of the new conclusions
+is given by the respective dual axiom of Definition \ref{def:lattice}.
+A simple application of this duality principle can be found
+in the proof of the following proposition.
+
+Note that what has been stated above
+is not a theorem within the theory of lattices,
+but rather a meta theorem \emph{about} this theory.
+
+\medskip
+
+\begin{proposition}
+  In a lattice
+  $\lparen L \mathcomma \vee \mathcomma \wedge \rparen$
+  the join and the meet are idempotent,
+  that is we have
+  $a \vee a \equal a$
+  and
+  $a \wedge a \equal a$
+  for all
+  $a \in L$.
+\end{proposition}
+
+\begin{proof}
+  Let $a \in L$.
+  Then
+  \[
+    a \vee a
+    \equal
+    a \vee \lparen a \wedge \lparen a \vee a \rparen \rparen
+    \equal
+    a
+  \]
+  and
+  \[
+    a \wedge a
+    \equal
+    a \wedge \lparen a \vee \lparen a \wedge a \rparen \rparen
+    \equal
+    a,
+  \]
+  where we used Abs$_{\wedge}$ and Abs$_{\vee}$ for the first equation
+  and the corresponding duals in the latter ones.
+\end{proof}
+
+\begin{lemma}
+  Let
+  $\lparen L \mathcomma \vee \mathcomma \wedge \rparen$
+  be a lattice.
+  It is
+  \[
+    a \vee b \equal b
+    \Leftrightarrow
+    a \wedge b \equal a
+  \]
+  for all $a \mathcomma b \in L$.
+\end{lemma}
+
+\begin{proof}
+  Let $a \mathcomma b \in L$.
+
+  \fbox{$\Rightarrow$}
+  We have
+  \[
+    a
+    \equal
+    a \wedge \lparen a \vee b \rparen
+    \equal
+    a \wedge b,
+  \]
+  where we used Abs$_{\wedge}$ for the first identity
+  and the assumption for the second one.
+
+  \fbox{$\Rightarrow$}
+  Note that we showed the first implication for arbitrary elements of $L$,
+  hence we are free to interchange $a$ and $b$.
+  Consequently we already proved
+  \[
+    b \vee a \equal a
+    \Rightarrow
+    b \wedge a \equal b,
+  \]
+  which is equivalent to
+  \[
+    a \vee b \equal a
+    \Rightarrow
+    a \wedge b \equal b
+  \]
+  due to the commutativity of the join and the meet.
+  Since this latter assertion is exactly
+  the dual statement of the remaining implication,
+  we are done by the duality principle.
+\end{proof}
+
+\medskip
+
+Even if the preceding result seems somewhat unimpressive at first glance,
+it has far-reaching consequences.
+Proposition \ref{prop:lattice_order} shows how an order relation arises
+from the proven equivalence,
+which plays an important role in Section \ref{sec:representation_theorems}.
+
+\medskip
+
+\begin{proposition}
+\label{prop:lattice_order}
+  Let
+  $\lparen L \mathcomma \vee \mathcomma \wedge \rparen$
+  be a lattice.
+  Then
+  \[
+    a \leq b
+    \mathcolon \Leftrightarrow
+    a \vee b \equal b
+    \Leftrightarrow
+    a \wedge b \equal a
+  \]
+  for
+  $a \mathcomma b \in L$
+  is a partial order on $L$
+  with respect to which for every two elements their infimum and supremum exist.
+\end{proposition}
+
+\begin{proof}
+  Let $a \mathcomma b \mathcomma c \mathcomma d \in L$.
+  We first show that $\leq$ is a partial order on $L$.
+  Reflexivity is given by the idempotence of the join and the meet.
+  If $a \leq b$ and $b \leq c$,
+  that is $a \vee b \equal b$ and $b \vee c \equal c$,
+  we have
+  \[
+    a \vee c
+    \equal
+    a \vee \lparen b \vee c \rparen
+    \equal
+    \lparen a \vee b \rparen \vee c
+    \equal
+    b \vee c
+    \equal
+    c,
+  \]
+  so that transitivity of $\leq$
+  follows from the associativity of the lattice operations.
+  Similarly, antisymmetry is obtained by
+  the commutativity of the join and the meet.
+
+  Since
+  \[
+    \lparen a \wedge b \rparen \vee a
+    \equal
+    a \vee \lparen a \wedge b \rparen
+    \equal
+    a
+    \quad \text{and} \quad
+    \lparen a \wedge b \rparen \vee a
+    \equal
+    b \vee \lparen b \wedge a \rparen
+    \equal
+    b
+  \]
+  we see  by the first of the two equivalent definitions of $\leq$
+  that $a \wedge b$ is a lower bound of the set
+  $\lbrace a \mathcomma b \rbrace$.
+  If $d$ is another lower bound of
+  $\lbrace a \mathcomma b \rbrace$
+  we have
+  \[
+    d \wedge \lparen a \wedge b \rparen
+    \equal
+    \lparen d \wedge d \rparen \wedge \lparen a \wedge b \rparen
+    \equal
+    \lparen d \wedge a \rparen \wedge \lparen d \wedge b \rparen
+    \equal
+    d \wedge d
+    \equal
+    d,
+  \]
+  where we used the second definition of $\leq$
+  as well as the idempotence of the meet.
+  The latter observation states that $d \leq a \wedge b$,
+  so $a \wedge b$ is the greatest lower bound of
+  $\lbrace a \mathcomma b \rbrace$.
+
+  Dually it is $a \vee b$ the supremum of
+  $\lbrace a \mathcomma b \rbrace$.
+  To show this one uses in each step
+  the respective other definition of the order
+  and as usual the corresponding dual axiom.
+\end{proof}
+
+\medskip
+
+The next result is the converse of Proposition \ref{prop:lattice_order}.
+In fact, one easily obtains that both constructions
+are inverse to each other in the following sense:
+For a lattice,
+applying Proposition \ref{prop:order_lattice} to the arising order
+yields the original lattice again,
+and vice versa.
+Thus, the lattices correspond exactly
+to ordered sets in which infima and suprema exist for all finite subsets.
+
+\medskip
+
+\begin{proposition}
+\label{prop:order_lattice}
+  Let
+  $\lparen X \mathcomma \leq \rparen$
+  be a partially ordered set
+  such that for every two elements their infimum and supremum exists.
+  Then
+  $\lparen X \mathcomma \vee \mathcomma \wedge \rparen$
+  is a lattice,
+  where
+  \[
+    x \vee y
+    \coloneq
+    \sup \lbrace x \mathcomma y \rbrace
+    \quad \text{and} \quad
+    x \wedge y
+    \coloneq
+    \inf \lbrace x \mathcomma y \rbrace.
+  \]
+\end{proposition}
+
+\begin{proof}
+  Let $x \mathcomma y \mathcomma z \in X$.
+  Clearly
+  $\sup \lbrace \sup \lbrace x \mathcomma y \rbrace \mathcomma z \rbrace
+  \equal \sup \lbrace x \mathcomma y \mathcomma z \rbrace
+  \equal \sup \lbrace x \mathcomma \sup \lbrace y \mathcomma z \rbrace \rbrace$
+  as well as
+  $\sup \lbrace x \mathcomma y \rbrace
+  \equal \sup \lbrace y \mathcomma x \rbrace$,
+  so that $\vee$ is associative and commutative.
+  Furthermore one easily sees that
+  $\sup \lbrace x \mathcomma \inf \lbrace x \mathcomma y \rbrace \rbrace
+  \equal x$,
+  hence $\vee$ also fulfills Abs$_{\vee}$.
+  In the same manner, the desired properties of $\wedge$ are obtained.
+\end{proof}
+
+\medskip
+
+We now begin to successively introduce new kind of lattices
+and point out some of the consequences that immediately follow.
+In this way, we gain a better understanding
+of the properties required in the definition of Boolean algebras.
+
+\medskip
+
+\begin{definition}
+  A lattice
+  $\lparen L \mathcomma \vee \mathcomma \wedge \rparen$
+  is called \emph{bounded},
+  if there exist a least and a greatest element of $L$
+  with respect to the induced order from Proposition \ref{prop:lattice_order}.
+  In this case these elements are unique
+  (cf.\ the remark after Definition \ref{def:ordered_elements})
+  and we denote the least element by $0$
+  and the greatest element by $1$.
+\end{definition}
+
+\begin{remark}
+  One immediately sees from the definition of the order that
+  in a bounded lattice
+  $\lparen L \mathcomma \vee \mathcomma \wedge \rparen$
+  the identities
+  \[
+    0 \vee a \equal a,
+    \quad
+    0 \wedge a \equal 0,
+    \quad
+    a \vee 1 \equal 1,
+    \quad
+    a \wedge 1 \equal a
+  \]
+  hold for all $a \in L$.
+  In particular,
+  the elements $0$ and $1$ are uniquely characterized
+  as neutral elements of the join and the meet, respectively.
+\end{remark}
+
+\begin{definition}
+  Let
+  $\lparen L \mathcomma \vee \mathcomma \wedge \rparen$
+  be a bounded lattice and $a \mathcomma b \in L$.
+  We call $b$ a \emph{complement} of $a$ if
+  \[
+    a \vee b \equal 1
+    \quad \text{and} \quad
+    a \wedge b \equal 0.
+  \]
+  In this case also $a$ is a complement of $b$
+  and we say that $a$ and $b$ are \emph{complementary}.
+  The lattice itself is called \emph{complementary}
+  if every element has at least one complement.
+\end{definition}
+
+\begin{remark}
+  In every bounded lattice $0$ and $1$ are complementary.
+\end{remark}
+
+\newpage
+
+\begin{example}
+  Let $\mathcal{S}$ be the set of all subspaces of the $\Q$-vector space $\Q^2$.
+  By basic linear algebra we know that
+  \[
+    U \vee V
+    \coloneq
+    U \mathplus V
+    \coloneq
+    \lbrace
+      u \mathplus v
+    \pipe
+      u \in U \text{ and } v \in V
+    \rbrace
+  \]
+  and
+  \[
+    U \wedge V
+    \coloneq
+    U \cap V
+  \]
+  are well-defined operations on $\mathcal{S}$ that make
+  $\lparen \mathcal{S} \mathcomma \vee \mathcomma \wedge \rparen$
+  a bounded lattice
+  with least element~$\lbrace 0 \rbrace$
+  and greatest element $\Q^2$.
+  Furthermore, the Steinitz exchange lemma
+  ensures the existence of complements.
+  Note that these are not unique in general, as
+  \[
+  \mathrm{span}
+  \begin{pmatrix}
+    1 \\
+    0
+  \end{pmatrix}
+  \mathcomma
+  \quad
+  \mathrm{span}
+  \begin{pmatrix}
+    0 \\
+    1
+  \end{pmatrix}
+  \mathcomma
+  \quad
+  \mathrm{span}
+  \begin{pmatrix}
+    1 \\
+    1
+  \end{pmatrix}
+  \]
+  are all pairwise complementary.
+\end{example}
+
+\begin{remark}
+  For any ring $R$ and any left $R$-module $M$
+  the previous construction makes the set of $R$-submodules of $M$
+  a bounded lattice.
+  However, the property of being complementary may not be fulfilled in general.
+  For example, let $R$ be a non-trivial local ring,
+  that is a unitary ring with more than two elements
+  and a unique maximal left ideal $\mathfrak{m}$.
+  If $R$ is considered as left module over itself,
+  the corresponding submodules are exactly the left ideals of $R$.
+  In this situation $\mathfrak{m}$ has no complement,
+  since it is maximal and not the zero ideal.
+\end{remark}
+
+\begin{definition}
+  A lattice
+  $\lparen L \mathcomma \vee \mathcomma \wedge \rparen$
+  is called \emph{distributive} if
+  \[
+    a \vee \lparen b \wedge c \rparen
+    \equal
+    \lparen a \vee b \rparen  \wedge \lparen a \vee c \rparen
+    \quad \text{and} \quad
+    a \wedge \lparen b \vee c \rparen
+    \equal
+    \lparen a \wedge b \rparen \vee \lparen a \wedge c \rparen
+  \]
+  for all $a \mathcomma b \mathcomma c \in L$.
+\end{definition}
+
+\begin{proposition}
+\label{prop:complements}
+  Let
+  $\lparen L \mathcomma \vee \mathcomma \wedge \rparen$
+  be a bounded and distributive lattice.
+  Then every $a \in L$ has at most one complement.
+\end{proposition}
+
+\begin{proof}
+  Let $a \mathcomma b_1 \mathcomma b_2 \in L$.
+  If $b_1$ and $b_2$ are complements of $a$ we have
+  $b_1 \vee a \equal b_2 \vee a$
+  as well as
+  $b_1 \wedge a \equal b_2 \wedge a$.
+  Hence,
+  \begin{align*}
+    b_1
+    \equal
+    b_1 \vee \lparen b_1 \wedge a \rparen
+    &\equal
+    b_1 \vee \lparen b_2 \wedge a \rparen
+    \equal
+    \lparen b_1 \vee b_2 \rparen \wedge \lparen b_1 \vee a \rparen \\
+    &\equal
+    \lparen b_2 \vee b_1 \rparen \wedge \lparen b_2 \vee a \rparen
+    \equal
+    b_2 \vee \lparen b_1 \vee a \rparen
+    \equal
+    b_2 \vee \lparen b_2 \wedge a \rparen
+    \equal
+    b_2.
+  \end{align*}
+\end{proof}
+
+\begin{definition}
+  Let
+  $\lparen L \mathcomma \vee \mathcomma \wedge \rparen$
+  be a bounded and distributive lattice.
+  If $a \in L$ has a complement
+  we denote it by $a \prime$.
+\end{definition}
+
+\begin{corollary}
+  In a complementary distributive lattice
+  $\lparen L \mathcomma \vee \mathcomma \wedge \rparen$
+  it is
+  $a \equal \lparen a \prime \rparen \prime$
+  for all $a \in L$.
+\end{corollary}
+
+\begin{proof}
+  Both $a$ and $\lparen a \prime \rparen \prime$
+  are complements of $a \prime$.
+  Now use Proposition~\ref{prop:complements}.
+\end{proof}
+
+\begin{proposition}
+  Let
+  $\lparen L \mathcomma \vee \mathcomma \wedge \rparen$
+  be a complementary distributive lattice.
+  Then
+  \[
+    \lparen a \vee b \rparen \prime
+    \equal
+    a \prime \wedge b \prime
+    \quad \text{and} \quad
+    \lparen a \wedge b \rparen \prime
+    \equal
+    a \prime \vee b \prime
+  \]
+  for all
+  $a \mathcomma b \in L$.
+\end{proposition}
+
+\begin{proof}
+  Let $a \mathcomma b \in L$.
+  We have
+  \[
+    \lparen a \vee b \rparen \wedge \lparen a \prime \wedge b \prime \rparen
+    \equal
+    \lparen a \wedge a \prime \wedge b \prime \rparen
+      \vee \lparen b \wedge a \prime \wedge b \prime \rparen
+    \equal
+    0 \vee 0
+    \equal
+    0
+  \]
+  and
+  \[
+    \lparen a \vee b \rparen \vee \lparen a \prime \wedge b \prime \rparen
+    \equal
+    \lparen a \vee b \vee a \prime \rparen
+      \wedge \lparen a \vee b \vee b \prime \rparen
+    \equal
+    1 \wedge 1
+    \equal
+    1,
+  \]
+  so that
+  $a \prime \wedge b \prime$
+  is the (unique) complement of
+  $a \vee b$.
+  The second identity is obtained analogously.
+\end{proof}
+
+\begin{definition}
+  A complementary distributive lattice is called a \emph{Boolean algebra}.
+  We say a Boolean algebra is \emph{degenerate}
+  in case it consists of a single element only.
+\end{definition}
+
+\begin{remark}
+  By definition Boolean algebras are bounded lattices and hence nonempty.
+  Furthermore, in any non-degenerate Boolean algebra it is $0 \ne 1$.
+\end{remark}

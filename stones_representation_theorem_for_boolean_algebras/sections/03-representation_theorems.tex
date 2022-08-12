@@ -1,0 +1,383 @@
+\section{Representation theorems for Boolean algebras}
+\label{sec:representation_theorems}
+
+A natural question that arises in the study of a theory is
+whether there is a common form of representation for all models.
+Example \ref{ex:powerset} gives a first hint to approach this problem.
+However, Example \ref{ex:countable} shows
+that this approach is not enough for cardinality reasons
+(cf.~the corresponding remark).
+The most satisfying answer to this concern is given by Theorem \ref{thm:stone1},
+and its topological version Theorem \ref{thm:stone2}.
+The presentation chosen here is the formal elaboration
+of a remark from the book \textquote{Introduction to Boolean Algebras}
+by Steven Gavant and Paul Halmos \cite[p.~190]{halmos:boolean_algebras}.
+
+\medskip
+
+\begin{theorem}
+\label{thm:stone1}
+  For any Boolean algebra
+  $\lparen B \mathcomma \vee \mathcomma \wedge \mathcomma \, \prime
+  \mathcomma 0 \mathcomma 1 \rparen$
+  there exists a set $X$ such that~$B$ can be embedded into $\Po{X}$.
+\end{theorem}
+
+\begin{proof}
+  Let $\symcal{U}$ be the set of ultrafilters on $B$ and
+  \[
+    f
+    \! \mathcolon
+    B
+    \rightarrow
+    \Po{ \symcal{U} }
+    \mathcomma \
+    b
+    \mapsto
+    \lbrace
+      U \in \symcal{U}
+    \pipe
+      b \in U
+    \rbrace.
+  \]
+  We immediately see that
+  $f \lparen 0 \rparen \equal \varnothing$
+  since ultrafilters are proper filters,
+  and $f \lparen 1 \rparen \equal \symcal{U}$
+  since filters are nonempty and closed upwards.
+  Let $b \mathcomma c \in B$.
+  Proposition \ref{prop:ultrafilter} yields
+  that~$f \lparen b \prime \rparen
+  \equal \symcal{U} \setminus f \lparen b \rparen$,
+  and
+  $f \lparen b \wedge c \rparen
+  \equal f \lparen b \rparen \cap f \lparen c \rparen$
+  follows directly from the definition of filters.
+  Since
+  \[
+    b \mathcomma c \notin U
+    \Leftrightarrow
+    b \prime \mathcomma c \prime \in U
+    \Leftrightarrow
+    b \prime \wedge c \prime \in U
+    \Leftrightarrow
+    \lparen b \vee c \rparen \prime \in U
+    \Leftrightarrow
+    b \vee c \notin U
+  \]
+  for any ultrafilter $U$ we additionally obtain that
+  $f \lparen b \vee c \rparen
+  \equal f \lparen b \rparen \cup f \lparen c \rparen$,
+  hence $f$ is a homomorphism for Boolean algebras
+  in the sense described at the beginning of
+  Section~\ref{sec:boolean_algebras}.
+
+  Let $d \mathcomma e \in B$ with $d \ne e$.
+  The order $\leq$ is antisymmetric,
+  so we have $d \nleq e$ or $e \nleq d$;
+  without loss of generality we assume $d \nleq e$.
+  By Lemma \ref{la:order_complement} this means
+  $d \wedge e \prime \ne 0$,
+  so due to Proposition \ref{prop:intersectionstable}
+  there is an ultrafilter $U$ with
+  $\lbrace d \wedge e \prime \rbrace \subseteq U$.
+  Clearly $U \in f \lparen d \rparen$
+  but~$U \notin f \lparen e \rparen$,
+  thus $f$ is injective.
+\end{proof}
+
+\begin{theorem}[Stone's Representation Theorem for Boolean algebras]
+\label{thm:stone2}
+  For any Boolean algebra
+  $\lparen B \mathcomma \vee \mathcomma \wedge \mathcomma \, \prime
+  \mathcomma 0 \mathcomma 1 \rparen$
+  there exists a totally disconnected compact Hausdorff space
+  $\lparen X \mathcomma \mathcal{O} \rparen$,
+  such that $B$ is isomorphic to the Boolean algebra of
+  clopen\footnote{i.e.\ closed and open at the same time;
+    cf.\ Example \ref{ex:clopen}}
+  sets of $\lparen X \mathcomma \mathcal{O} \rparen$.
+\end{theorem}
+
+\begin{proof}
+  We continue the proof of Theorem \ref{thm:stone1} and let
+  $\symcal{U}$ be the set of ultrafilters on $B$
+  as well as
+  \[
+    f
+    \! \mathcolon
+    B
+    \rightarrow
+    \Po{ \symcal{U} }
+    \mathcomma \
+    b
+    \mapsto
+    \lbrace
+    U \in \symcal{U}
+    \pipe
+    b \in U
+    \rbrace.
+  \]
+  Furthermore we denote by
+  \[
+    \symcal{B}
+    \coloneq
+    f \lbrack B \rbrack
+    \equal
+    \left \lbrace
+    \lbrace
+    U \in \symcal{U}
+    \pipe
+    b \in U
+    \rbrace
+    \pipe
+    b \in B
+    \right \rbrace
+  \]
+  the image of $f$.
+  That $f$ is a monomorphism means
+  that $\symcal{B}$ is the base
+  of some topology~$\symcal{O}$ on $\symcal{U}$.
+  Indeed, from $f \lparen 1 \rparen \equal \symcal{U}$
+  one obtains $\bigcup \symcal{B} \equal \symcal{U}$,
+  and from
+  $f \lparen b \wedge c \rparen
+    \equal f \lparen b \rparen \cap f \lparen c \rparen$
+  we see that $B_1 \cap B_2 \in \symcal{B}$
+  for any $B_1 \mathcomma B_2 \in \symcal{B}$.
+  We now show that $\symcal{O}$ hast the desired properties.
+
+  \smallskip
+
+  \myul{$\symcal{O}$ is compact.} \thinspace
+  Assume there is an open cover $\symcal{C}$ of $\symcal{U}$
+  that has no finite subcover.
+  Since~$\symcal{B}$ is a base for the topology,
+  $\symcal{C}$ is of the form
+  $\lbrace f \lparen i \rparen \pipe  i \in I \rbrace$
+  for some $I \subseteq B$.
+  We now fix a finite subset $I_0 \subseteq I$.
+  By assumption
+  $\bigcup_{ i \in I_0 } f \lparen i \rparen \ne \symcal{U}$,
+  so there exists some ultrafilter~$U_{ I_0 } \in \symcal{U}$
+  with $U_{ I_0 } \notin \bigcup_{ i \in I_0 } f \lparen i \rparen$.
+  Thus, $U_{ I_0 } \notin f \lparen i \rparen$ for all $i \in I_0$
+  which means nothing but $i \notin U_{ I_0 }$ for all $i \in I_0$.
+  By Proposition \ref{prop:ultrafilter} we then have
+  $i \prime \in U_{ I_0 }$ for all $i \in I_0$
+  and since $I_0$ is finite also
+  $\bigwedge_{ i \in I_0 } i \prime \in U_{ I_0 }$.
+  In particular $\bigwedge_{ i \in I_0 } i \prime \ne 0$.
+  Because $I_0$ was an arbitrary finite subset of $I$
+  we have shown that the set
+  $\lbrace i \prime \pipe i \in I \rbrace$
+  fulfills the requirement of the corollary
+  after Proposition \ref{prop:intersectionstable},
+  so that there exists some ultrafilter~$U \in \symcal{U}$
+  with~$\lbrace i \prime \pipe i \in I \rbrace \subseteq U$.
+  But clearly $U \notin \bigcup_{ i \in I } f \lparen i \rparen$,
+  contradicting the assumption that $\symcal{C}$ is an open cover.
+
+  \smallskip
+
+  \myul{$\symcal{O}$ is totally disconnected.} \thinspace
+  Let $\symcal{V} \subseteq \symcal{U}$ contain
+  at least two distinct elements $U \ne V$.
+  Without loss of generality we find some $b \in U \setminus V$.
+  Proposition \ref{prop:ultrafilter} states that $b \prime \in U$,
+  hence
+  $\varnothing \ne \lbrace W \in \symcal{V} \pipe b \in W \rbrace
+  \subseteq f \lparen b \rparen$
+  and
+  $\varnothing \ne \lbrace W \in \symcal{V}
+  \pipe b \prime \in W \rbrace \subseteq f \lparen b \prime \rparen$.
+  Since no ultrafilter contains $b$ and $b \prime$ at the same time,
+  one additionally obtains
+  $f \lparen b \rparen \cap f \lparen b \prime \rparen
+  \equal \varnothing$,
+  whence $\symcal{V}$ is separated by disjoint open sets.
+
+  \smallskip
+
+  \myul{$\symcal{O}$ is Hausdorff.} \thinspace
+  Let $U \mathcomma V \in \symcal{U}$ with $U \ne V$.
+  As above there exists some $b \in B$ such that $b \in U$ and $b \prime \in V$.
+  Apparently we have
+  $U \in f \lparen b \rparen$ and $V \in f \lparen b \prime \rparen$,
+  and furthermore again
+  $f \lparen b \rparen \cap f \lparen b \prime \rparen \equal \varnothing$.
+
+  \smallskip
+
+  \myul{$\symcal{B}$ contains exactly the clopen sets.} \thinspace
+  From
+  $f \lparen b \rparen ^ \complement \equal f \lparen b \prime \rparen$
+  for all $b \in B$ we see
+  that every set in $\symcal{B}$ is both open and closed.
+  Conversely, let $\symcal{V} \subseteq \symcal{U}$ be open and closed.
+  Because $\symcal{B}$ is a base for the topology we have
+  $\symcal{V} \equal \bigcup_{ i \in I } f \lparen i \rparen$
+  for some $I \subseteq B$,
+  and since  $\symcal{V}$ is a closed set of a compact topology
+  there is some finite subset $I_0 \subseteq I$ with
+  $\symcal{V} \equal \bigcup_{ i \in I_0 } f \lparen i \rparen
+  \equal f \lparen \bigvee_{ i \in I_0} i \rparen$.
+  In particular $\symcal{V} \in \symcal{B}$.
+\end{proof}
+
+\begin{definition}
+  The topological space constructed
+  in the proofs of Theorem \ref{thm:stone1} and Theorem \ref{thm:stone2}
+  is called the \emph{Stone space} of $B$
+  and denoted by $S \lparen B \rparen$.
+\end{definition}
+
+\medskip
+
+Finally, we show a stronger version of Theorem \ref{thm:stone1}
+for finite Boolean algebras.
+For that reason we introduce the notion of \emph{atoms} on Boolean algebras
+to gain better control of finite ultrafilters.
+
+\medskip
+
+\begin{definition}
+  An element $a \in B$ of a Boolean algebra
+  $\lparen B \mathcomma \vee \mathcomma \wedge \mathcomma \, \prime
+  \mathcomma 0 \mathcomma 1 \rparen$
+  with the properties
+  \begin{enumerate}
+    \item $a \ne 0$,
+    \item $0 \leq b \leq a$ implies $b \in \lbrace 0 \mathcomma a \rbrace$
+    for any $b \in B$
+  \end{enumerate}
+  is called an \emph{atom} of the Boolean algebra.
+\end{definition}
+
+\begin{proposition}
+\label{prop:finite_ultrafilter}
+  Every ultrafilter on a finite Boolean algebra
+  $\lparen B \mathcomma \vee \mathcomma \wedge \mathcomma \, \prime
+  \mathcomma 0 \mathcomma 1 \rparen$
+  is of the form
+  \[
+    U_a
+    \equal
+    \lbrace b \in B \pipe a \leq b \rbrace
+  \]
+  for some atom $a \in B$.
+\end{proposition}
+
+\begin{proof}
+  Let $U$ be an ultrafilter on a finite Boolean algebra.
+  Note that also $U$ is finite,
+  so the element $a \coloneq \bigwedge_{ u \in U } u \in U$
+  is well-defined.
+  Since clearly $a \leq u$ for all $u \in U$
+  it follows that
+  $U \subseteq \lbrace b \in B \pipe a \leq b \rbrace$,
+  and the definition of filters also gives
+  $\lbrace b \in B \pipe a \leq b \rbrace \subseteq U$.
+
+  The filter $U$ is proper, so $a \ne 0$.
+  Finally let $b \in B$ with $0 \leq b \less a$.
+  Then $b \notin U$,
+  hence by Proposition~\ref{prop:ultrafilter} it is $b \prime \in U$.
+  This means $a \leq b \prime$ and therefore also $b \leq b \prime$.
+  Lemma~\ref{la:order_complement} now shows that
+  $0 \equal b \wedge b \equal b$,
+  so that $a$ is an atom.
+\end{proof}
+
+\begin{lemma}
+\label{la:atom_join}
+  Let $a \in B$ be an atom of a Boolean algebra
+  $\lparen B \mathcomma \vee \mathcomma \wedge \mathcomma \prime
+  \mathcomma 0 \mathcomma 1 \rparen$
+  and $b_1 \mathcomma \unicodeellipsis \mathcomma b_n \in B$ with
+  $a \leq b_1 \vee \cdots \vee b_n$.
+  Then $a \leq b_i$
+  for some
+  $i \in \lbrace 1 \mathcomma \unicodeellipsis \mathcomma n \rbrace$.
+\end{lemma}
+
+\begin{proof}
+  Assume $a \nleq b_i$
+  for all
+  $i \in \lbrace 1 \mathcomma \unicodeellipsis \mathcomma n \rbrace$
+  and fix some
+  $i_0 \in \lbrace 1 \mathcomma \unicodeellipsis \mathcomma n \rbrace$.
+  From the observation $0 \leq a \wedge b_{ i_0 } \prime \leq a$
+  it follows that
+  $a \wedge b_{ i_0 } \prime \in \lbrace 0 \mathcomma a \rbrace$,
+  and because $a \nleq b_{ i_0 }$
+  we obtain with Lemma \ref{la:order_complement}
+  that $a \wedge b_{ i_0 } \prime \equal a$.
+  The choice of $i_0$ was arbitrary,
+  whence $a \leq b_i \prime$
+  for
+  all~$i \in \lbrace 1 \mathcomma \unicodeellipsis \mathcomma n \rbrace$
+  and so
+  \[
+    a
+    \leq
+    b_1 \prime \wedge \cdots \wedge b_n \prime
+    \equal
+    \lparen b_1 \vee \cdots \vee b_n \rparen \prime.
+  \]
+  Therefore with the assumption $a \leq b_1 \vee \cdots \vee b_n$
+  we finally obtain
+  \[
+    a
+    \leq
+    \lparen b_1 \vee \cdots \vee b_n \rparen
+      \wedge \lparen b_1 \vee \cdots \vee b_n \rparen \prime
+    \equal
+    0,
+  \]
+  contradicting that $a$ is an atom.
+\end{proof}
+
+\begin{theorem}
+  For any finite Boolean algebra
+  $\lparen B \mathcomma \vee \mathcomma \wedge \mathcomma \, \prime
+  \mathcomma 0 \mathcomma 1 \rparen$
+  there exists a set $X$ such that $B$ is isomorphic $\Po{X}$.
+\end{theorem}
+
+\begin{proof}
+  In the proof of Theorem \ref{thm:stone1} we have already seen that
+  \[
+    f
+    \! \mathcolon
+    B
+    \rightarrow
+    \Po{ \symcal{U} }
+    \mathcomma \
+    b
+    \mapsto
+    \lbrace
+    U \in \symcal{U}
+    \pipe
+    b \in U
+    \rbrace
+  \]
+  is a monomorphism from $B$
+  into the powerset of the set $\symcal{U}$ of all ultrafilters on $B$.
+
+  We now show that $f$ is surjective in case $B$ is finite.
+  For this purpose let $\symcal{V} \in \Po{ \symcal{U} }$,
+  and for $V \in \symcal{V}$ denote by $a_V$ the atom belonging to $V$
+  according to Proposition \ref{prop:finite_ultrafilter}.
+  Note that~$\symcal{V}$ is finite,
+  so $a \coloneq \bigvee_{ V \in \symcal{V} } a_V \in B$ is well-defined.
+  Let $U \in f \lparen a \rparen$ with corresponding atom $a_U$.
+  Since $a \in V$ we have $a_U \leq a$,
+  so by Lemma \ref{la:atom_join} it is $a_U \leq a_V$
+  for some $V \in \symcal{V}$.
+  As both $a_U$ and $a_V$ are atoms we obtain $a_U \equal a_V$
+  and so $U \equal V$.
+  This means $f \lparen a \rparen \subseteq \symcal{V}$,
+  and since clearly also $\symcal{V} \subseteq f \lparen a \rparen$,
+  we see that $f$ maps $a$ to $\symcal{V}$.
+\end{proof}

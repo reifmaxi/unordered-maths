@@ -1,0 +1,105 @@
+\section{Partially ordered sets}
+\label{sec:orders}
+
+This section briefly collects some basic notions of order theory
+which occur within the study of Boolean algebras.
+The only theorem in this section (Zorn's lemma) remains without proof,
+but it is well-known to be equivalent to the axiom of choice.
+
+\medskip
+
+\begin{definition}
+  A \emph{(partially) ordered set} is a tuple
+  $\lparen X \mathcomma \leq \rparen$
+  consisting of a set $X$ and a relation $\leq$ on $X$ such that
+  \begin{enumerate}
+    \item $x \leq x$ for all $x \in X$,
+    \item $x \leq y$ and $y \leq z$ implies $x \leq z$
+    for all $x \mathcomma y \mathcomma z \in X$,
+    \item $x \leq y$ and $y \leq z$ implies $x \equal y$
+    for all $x \mathcomma y \in X$.
+  \end{enumerate}
+  In this case we say that $\leq$ is a (partial) order on $X$.
+\end{definition}
+
+\begin{definition}
+\label{def:ordered_elements}
+  Let
+  $\lparen X \mathcomma \leq \rparen$
+  be a partially ordered set and
+  $S \subseteq X$.
+  An element $x \in X$ is called
+  \begin{itemize}
+    \item a \emph{lower bound} of $S$ if
+    $x \leq s$ for all $s \in S$,
+    \item an \emph{upper bound} of $S$ if
+    $s \leq x$ for all $s \in S$,
+    \item a \emph{least element} of $S$ if
+    $x$ is a lower bound of $S$ and $x \in S$,
+    \item a \emph{greatest element} of $S$ if
+    $x$ is an upper bound of $S$ and $x \in S$,
+    \item an \emph{infimum} of $S$ if
+    $x$ is a greatest element in the set of lower bounds of $S$,
+    \item a \emph{supremum} of $S$ if
+    $x$ is a least element in the set of upper bounds of $S$,
+    \item a \emph{minimal element} of $S$ if
+    $x \in S$, and $s \leq x$ implies $s \equal x$ for all $s \in S$,
+    \item a \emph{maximal element} of $S$ if
+    $x \in S$, and $x \leq s$ implies $s \equal x$ for all $s \in S$.
+  \end{itemize}
+
+\begin{remark}
+  If existing,
+  a least or a greatest element of $S$ is unique due to antisymmetry.
+  This is of course also true for a infimum or a supremum of $S$,
+  so that in case of existence we may use the notations
+  $\inf \lparen S \rparen$ or $\sup \lparen S \rparen$, respectively.
+\end{remark}
+
+\begin{definition}
+  Let $\lparen P \mathcomma \leq \rparen$ be a partially ordered set.
+  A subset $C \subseteq P$ is called a \emph{chain},
+  if always $c \leq d$ or $d \leq c$ for any $c \mathcomma d \in C$.
+\end{definition}
+
+\begin{theorem}[Zorn's lemma]
+\label{thm:zorn}
+  Let $\lparen P \mathcomma \leq \rparen$ be a partially ordered set
+  such that every chain in $P$ has an upper bound.
+  Then there exists a maximal element in $P$.
+\end{theorem}
+
+\end{definition}
+
+\begin{definition}
+  A \emph{filter} on a partially ordered set
+  $\lparen X \mathcomma \leq \rparen$
+  is a subset
+  $F \subseteq X$
+  such that
+  \begin{enumerate}
+    \item $F \ne \varnothing$,
+    \item $f \leq x$ implies $x \in F$
+    for all $f \in F$ and $x \in X$,
+    \item there is $h \in F$ with $h \leq f$ and $h \leq g$
+    for all $f \mathcomma g \in F$.
+  \end{enumerate}
+  A filter is called \emph{proper} in case $F \ne X$.
+\end{definition}
+
+\begin{definition}
+  The set of proper filters on $X$ is partially ordered by set inclusion.
+  A maximal element in this set is called an \emph{ultrafilter}.
+\end{definition}
+
+\begin{remark}
+  Not every partially ordered set has an ultrafilter.
+  Consider the integers $\Z$ with the usual order.
+  One immediately sees that the proper filters are exactly the segments,
+  that is sets of the form
+  $\lbrace x \in \Z \pipe z \leq x \rbrace$
+  for a given $z \in \Z$.
+  Thus,
+  since $\Z$ is unbounded downwards,
+  there no proper filter that is maximal with respect to the set inclusion.
+\end{remark}

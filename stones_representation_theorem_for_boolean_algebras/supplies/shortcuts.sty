@@ -1,0 +1,26 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{shortcuts}[2022/02/22 Some useful new macros.]
+
+% Providea a complete implementation of unicode maths for XeLaTeX and LuaLaTeX.
+\RequirePackage{unicode-math}
+
+% The set of natural numbers.
+\newcommand{\N}{\symbb{N}}
+
+% The set of integers.
+\newcommand{\Z}{\symbb{Z}}
+
+% The set of rational numbers.
+\newcommand{\Q}{\symbb{Q}}
+
+% The set of real numbers.
+\newcommand{\R}{\symbb{R}}
+
+% The powerset operator.
+\newcommand{\Po}[1]{\symcal{P} \lparen #1 \rparen}
+
+% Move to general abbreviations.
+\newcommand{\pipe}{\ \vert\ }
+
+% The image of a map.
+\newcommand{\im}{\mathrm{im}}

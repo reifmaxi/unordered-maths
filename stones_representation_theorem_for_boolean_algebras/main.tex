@@ -1,0 +1,51 @@
+\documentclass[a4paper]{paper}
+
+% My personal LaTeX shortcuts.
+\usepackage{shortcuts}
+
+% Provides easy driver-independent access to several kinds of color tints,
+% shades, tones, and mixes of arbitrary colors.
+\usepackage{xcolor}
+
+% Provides a means of using facilities analogous to those of the caption
+% package, when writing captions for subfigures and the like.
+\usepackage{subcaption}
+
+% ----------------------------------- MISC -------------------------------------
+
+% Literature.
+\addbibresource{supplies/literature.bib}
+
+% Meta information.
+\title{Stone's Representation Theorem for Boolean Algebras}
+\author{Maximilian Reif}
+\date{July 2022}
+
+% PDF meta.
+\hypersetup{
+  pdfinfo = {
+    Title = {Stone's Representation Theorem for Boolean Algebras},
+    Author = {Maximilian Reif},
+    Subject = {Representation theorems for Boolean algebras},
+    Keywords = {Boolean algebra, Topology, Lattice},
+    License = {CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)},
+    URL = {https://github.com/reifmaxi/unordered-maths}
+  }
+}
+
+% ------------------------------------ END -------------------------------------
+
+\begin{document}
+
+\include{supplies/titlepage}
+
+\input{sections/01-lattices}
+\input{sections/02-boolean_algebras}
+\input{sections/03-representation_theorems}
+
+\appendix
+\input{sections/A-orders}
+
+\printbibliography[heading=bibintoc]
+
+\end{document}

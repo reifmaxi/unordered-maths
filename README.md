@@ -21,7 +21,7 @@ or add some `paper/graphics/logo.png`!**
 
 ## Get the documents
 
-Nothing to see here.
+- [Stone's Representation Theorem for Boolean Algebras](https://link.maximilianreif.de/stone)
 
 ## Further insights
 

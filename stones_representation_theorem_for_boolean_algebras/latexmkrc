@@ -1,0 +1,11 @@
+# This file completes the settings from ~/.config/latexmk/latexmkrc.
+# For a complete reference visit https://man.cx/latexmk.
+
+# Main file
+@default_files = ( 'main.tex' );
+
+# Create a pdf file using lualatex.
+$pdf_mode = 4;
+
+# The path to custom class and packages.
+ensure_path( 'TEXINPUTS', './supplies//' );
