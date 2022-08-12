@@ -1,0 +1,17 @@
+# gitignore for *tex related stuff
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.brf
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.pdf
+*.run.xml
+*.synctex.gz
+*.toc
+
+# exclude the university's logo
+**/logo.png
