@@ -14,8 +14,10 @@ Links to the compiled files can be found under
 For copyright reasons, I am not allowed to upload my university's logo.
 This means:
 
-| :exclamation: To avoid compilation errors, add some `paper/graphics/logo.png`. |
-|--------------------------------------------------------------------------------|
+:exclamation:
+**To avoid compilation errors, add some `paper/graphics/logo.png`
+or make `\includegraphics[width=0.45\textwidth]{logo}` in
+`paper/supplies/titlepage.tex` a comment!**
 
 ## Get the documents
 
@@ -25,7 +27,7 @@ Nothing to see here.
 
 ### The structure of the project folders
 
-In most cases I spread the LaTeX code over several files
+In most cases I spread the LaTeX code is spread over several files
 to keep the individual parts clear and tidy.
 The file/folder structure that has worked best for me is as follows:
 ```
@@ -48,17 +50,17 @@ paper
 
 The main file for compiling is `paper.tex`.
 The title page `supplies/titlepage.tex` and the actual content `sections/*`
-are included in this file via LaTeX `input` macro.
+are included in this file via LaTeX `\input` macro.
 
-All used graphics can be found in `graphics`;
-the compiler is told about this fact by \graphicspath{{graphics/}}.
+All used graphics can be found in `graphics/`;
+the compiler is told about this fact by `\graphicspath{{graphics/}}`.
 
-In addition, `supplies` contains a custom LaTeX class `paper.cls`
+In addition, `supplies/` contains a custom LaTeX class `paper.cls`
 and a custom LaTaX package `shortcuts.sty`.
 In this way, the preamble of the main file is minimized
 and code parts can be easily reused.
-Make sure to add `supplies` to `TEXINPUTS` environment variable
-before compilation (for example by the last line in `latexmkrc`)
+Make sure to add `./supplies/` to `TEXINPUTS` environment variable
+before compilation (for example by the last line in `latexmkrc`).
 
 Finally, `latexmkrc` specifies the main file
 and which TeX engine should be used for compiling the document.
@@ -66,7 +68,7 @@ See more details about latexmk just below.
 
 ### latexmk
 
-Latexmk to completely automates the process of compiling a LaTeX document.
+Latexmk completely automates the process of compiling a LaTeX document.
 For this to work there is
 - a [user's configuration file](https://github.com/reifmaxi/dotfiles/blob/main/config/latexmk/latexmkrc)
 (`$XDG_CONFIG_HOME/latexmk/latexmkrc` or `~/.latexmkrc`),
@@ -86,7 +88,7 @@ The complete latexmk documentation can be found [here](https://man.cx/latexmk).
 ### LuaTeX
 
 My documents are written in LuaLaTeX,
-a LaTeX variant for the LuaTex engine.
+a LaTeX variant for the LuaTeX engine.
 This has the following advantages:
 - native Unicode support, hence no need for [inputenc](https://www.ctan.org/pkg/inputenc)
 - support for AAT and OpenType fonts via [fontspec](https://www.ctan.org/pkg/fontspec)
