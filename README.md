@@ -31,9 +31,9 @@ In most cases I spread the LaTeX code is spread over several files
 to keep the individual parts clear and tidy.
 The file/folder structure that has worked best for me is as follows:
 ```
-paper
+<some_paper>
 ├── latexmkrc
-├── paper.tex
+├── main.tex
 ├── sections
 │   ├── 01-first.tex
 │   ├── 02-second.tex
@@ -48,7 +48,7 @@ paper
     └── titlepage.tex
 ```
 
-The main file for compiling is `paper.tex`.
+The main file for compiling is `main.tex`.
 The title page `supplies/titlepage.tex` and the actual content `sections/*`
 are included in this file via LaTeX `\input` macro.
 
