@@ -16,8 +16,7 @@ This means:
 
 :exclamation:
 **To avoid compilation errors,
-make `\includegraphics[width=0.45\textwidth]{logo}` in
-`paper/supplies/titlepage.tex` a comment
+make the `\includegraphics` in `paper/supplies/titlepage.tex` a comment
 or add some `paper/graphics/logo.png`!**
 
 ## Get the documents
